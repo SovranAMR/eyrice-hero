@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eyrice Diş Hastanesi — Bursa'nın İlk ve Tek Özel Diş Hastanesi</title>
+  <meta name="description" content="Eyrice Diş Hastanesi — Bursa'nın ilk ve tek özel diş hastanesi. Gülüş tasarımı, Hollywood Smile, implant ve tüm diş tedavileri. 17 uzman hekim kadrosu.">
+  <meta property="og:title" content="Eyrice Diş Hastanesi">
+  <meta property="og:description" content="Bursa'nın İlk ve Tek Özel Diş Hastanesi — Gülüş Tasarımı Merkezi">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #FDFBF7;
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS
+       ═══════════════════════════════════════════ */
+    :root {
+      --gold: #C9A961;
+      --gold-light: #E8D5A3;
+      --gold-dark: #A08339;
+      --teal: #0A3A4A;
+      --teal-light: #0D5C73;
+      --cream: #FDFBF7;
+      --cream-dark: #F5F0E8;
+      --text-primary: #1a1a1a;
+      --text-muted: #6B7280;
+      --white: #FFFFFF;
+      --shadow-soft: 0 4px 30px rgba(10, 58, 74, 0.08);
+      --shadow-gold: 0 4px 40px rgba(201, 169, 97, 0.15);
+      --shadow-lift: 0 20px 60px rgba(10, 58, 74, 0.12);
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO CONTAINER — FULL VIEWPORT
+       ═══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVBAR — STICKY GLASS
+       ═══════════════════════════════════════════ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0 clamp(16px, 4vw, 48px);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(253, 251, 247, 0.85);
+      backdrop-filter: blur(20px) saturate(1.8);
+      -webkit-backdrop-filter: blur(20px) saturate(1.8);
+      border-bottom: 1px solid rgba(201, 169, 97, 0.12);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .navbar.scrolled {
+      height: 60px;
+      background: rgba(253, 251, 247, 0.95);
+      box-shadow: var(--shadow-soft);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      font-size: 20px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+    }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo-text span {
+      color: var(--gold);
+    }
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--teal);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, rgba(201,169,97,0.1), rgba(201,169,97,0.05));
+      border: 1px solid rgba(201,169,97,0.2);
+      transition: all 0.3s ease;
+    }
+    .nav-phone:hover {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-gold);
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO MAIN CONTENT
+       ═══════════════════════════════════════════ */
+    .hero-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 100px clamp(20px, 5vw, 80px) 40px;
+      position: relative;
+    }
+    .hero-grid {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    /* ── LEFT: TEXT CONTENT ── */
+    .hero-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: var(--gold-light);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    }
+    .hero-badge::before {
+      content: '★';
+      font-size: 10px;
+    }
+
+    /* Headline */
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 68px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--teal);
+      margin-bottom: 12px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+    }
+    .hero-headline .gold {
+      color: var(--gold);
+      position: relative;
+    }
+    .hero-headline .gold::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      border-radius: 2px;
+    }
+
+    /* Sub-headline */
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+    }
+
+    /* Description */
+    .hero-desc {
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+    }
+
+    /* CTA Buttons */
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
+    }
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: var(--shadow-gold);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    .cta-primary:hover::before { left: 100%; }
+    .cta-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(201, 169, 97, 0.35);
+    }
+    .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: transparent;
+      color: var(--teal);
+      text-decoration: none;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 16px;
+      border: 2px solid rgba(10, 58, 74, 0.15);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .cta-secondary:hover {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+
+    /* ── RIGHT: VISUAL AREA ── */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateX(60px);
+      animation: slideLeft 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+    }
+    .visual-main {
+      width: 100%;
+      max-width: 520px;
+      aspect-ratio: 4/5;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow-lift);
+    }
+    .visual-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        transparent 40%,
+        rgba(10, 58, 74, 0.03) 70%,
+        rgba(10, 58, 74, 0.15) 100%
+      );
+      border-radius: 24px;
+    }
+
+    /* Floating cards */
+    .float-card {
+      position: absolute;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(201,169,97,0.1);
+      z-index: 3;
+      opacity: 0;
+    }
+    .float-card-1 {
+      top: 12%;
+      left: -40px;
+      animation: floatIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards,
+                 gentleFloat 4s ease-in-out 2s infinite;
+    }
+    .float-card-2 {
+      bottom: 20%;
+      right: -30px;
+      animation: floatIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards,
+                 gentleFloat 5s ease-in-out 2.3s infinite;
+    }
+    .float-card-3 {
+      bottom: 5%;
+      left: -20px;
+      animation: floatIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.8s forwards,
+                 gentleFloat 4.5s ease-in-out 2.6s infinite;
+    }
+    .float-card .fc-icon {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+    .float-card .fc-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--teal);
+    }
+    .float-card .fc-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .float-card .fc-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    /* ═══════════════════════════════════════════
+       TRUST BAR — BOTTOM SECTION
+       ═══════════════════════════════════════════ */
+    .trust-bar {
+      padding: 0 clamp(20px, 5vw, 80px) 40px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.6s forwards;
+    }
+    .trust-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      gap: 1px;
+      background: rgba(201,169,97,0.15);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .trust-item {
+      flex: 1;
+      background: var(--white);
+      padding: 28px 24px;
+      text-align: center;
+      transition: all 0.4s ease;
+      cursor: default;
+    }
+    .trust-item:first-child { border-radius: 20px 0 0 20px; }
+    .trust-item:last-child { border-radius: 0 20px 20px 0; }
+    .trust-item:hover {
+      background: linear-gradient(135deg, rgba(201,169,97,0.05), rgba(201,169,97,0.02));
+      transform: translateY(-2px);
+    }
+    .trust-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .trust-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ═══════════════════════════════════════════
+       ROLLING TEXT — SERVICE MARQUEE
+       ═══════════════════════════════════════════ */
+    .marquee-section {
+      padding: 24px 0;
+      overflow: hidden;
+      background: var(--teal);
+      margin-top: 40px;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 30s linear infinite;
+    }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 32px;
+      white-space: nowrap;
+      color: rgba(255,255,255,0.7);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .marquee-item .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .marquee-item:nth-child(odd) {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* ═══════════════════════════════════════════
+       FLOATING WHATSAPP BUTTON
+       ═══════════════════════════════════════════ */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.35);
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      text-decoration: none;
+      opacity: 0;
+      transform: scale(0);
+      animation: popIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 2s forwards;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 32px rgba(37, 211, 102, 0.5);
+    }
+    .whatsapp-float svg {
+      width: 30px;
+      height: 30px;
+      fill: white;
+    }
+    .whatsapp-pulse {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid #25D366;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ═══════════════════════════════════════════
+       DECORATIVE ELEMENTS
+       ═══════════════════════════════════════════ */
+    .hero-bg-gradient {
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 70%;
+      height: 120%;
+      background: radial-gradient(ellipse at center, rgba(201,169,97,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-bg-circle {
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,97,0.08);
+      pointer-events: none;
+      z-index: 0;
+      animation: rotateSlow 40s linear infinite;
+    }
+    .hero-bg-circle::after {
+      content: '';
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      right: 50px;
+      bottom: 50px;
+      border-radius: 50%;
+      border: 1px solid rgba(10,58,74,0.05);
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLL-TRIGGERED SECTIONS
+       ═══════════════════════════════════════════ */
+    .scroll-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(40px, 8vw, 100px) clamp(20px, 5vw, 80px);
+      position: relative;
+    }
+
+    /* ── SMILE DESIGN SHOWCASE ── */
+    .smile-section {
+      background: var(--white);
+    }
+    .smile-grid {
+      max-width: 1400px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .smile-text {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .smile-text.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .smile-text .section-tag {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .smile-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .smile-text p {
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    .smile-features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .smile-feature {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      background: var(--cream);
+      border-radius: 14px;
+      transition: all 0.3s ease;
+    }
+    .smile-feature:hover {
+      background: var(--cream-dark);
+      transform: translateX(8px);
+    }
+    .smile-feature .sf-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .smile-feature .sf-text {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--teal);
+    }
+    .smile-feature .sf-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Smile visual */
+    .smile-visual {
+      position: relative;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+    }
+    .smile-visual.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .smile-card-stack {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .smile-card {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lift);
+    }
+    .smile-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .smile-card-bg {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: -20px;
+      bottom: -20px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(201,169,97,0.15), rgba(201,169,97,0.05));
+      z-index: -1;
+    }
+    .smile-stat-card {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px 32px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      gap: 32px;
+      z-index: 2;
+    }
+    .smile-stat {
+      text-align: center;
+    }
+    .smile-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+    .smile-stat-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── HOSPITAL PRESTIGE SECTION ── */
+    .hospital-section {
+      background: var(--teal);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .hospital-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(201,169,97,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hospital-grid {
+      max-width: 1400px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hospital-text {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hospital-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hospital-text .section-tag {
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hospital-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .hospital-text h2 .gold { color: var(--gold); }
+    .hospital-text p {
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+    }
+
+    .hospital-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .hosp-feat {
+      padding: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hosp-feat.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hosp-feat:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(201,169,97,0.3);
+      transform: translateY(-4px);
+    }
+    .hosp-feat .hf-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .hosp-feat .hf-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .hosp-feat .hf-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    /* Hospital Visual */
+    .hospital-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    }
+    .hospital-visual.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .hospital-img {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .hospital-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ═══════════════════════════════════════════
+       CONTACT BAR — BOTTOM
+       ═══════════════════════════════════════════ */
+    .contact-bar {
+      background: var(--cream-dark);
+      padding: 40px clamp(20px, 5vw, 80px);
+    }
+    .contact-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .contact-item strong {
+      color: var(--teal);
+      font-weight: 600;
+    }
+    .contact-social {
+      display: flex;
+      gap: 12px;
+    }
+    .contact-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .contact-social a:hover {
+      background: var(--teal);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideLeft {
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes floatIn {
+      to { opacity: 1; }
+    }
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0; }
+    }
+    @keyframes popIn {
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes rotateSlow {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════════
+       MOBILE RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .smile-grid,
+      .hospital-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-ctas { justify-content: center; }
+      .hero-visual { order: -1; }
+      .visual-main { max-width: 400px; }
+      .float-card-1 { left: 10px; }
+      .float-card-2 { right: 10px; }
+      .float-card-3 { left: 10px; }
+      .smile-features { align-items: center; }
+      .smile-feature { max-width: 400px; width: 100%; }
+      .smile-stat-card { gap: 20px; padding: 16px 24px; }
+      .hospital-features { max-width: 500px; margin: 0 auto; }
+    }
+    @media (max-width: 640px) {
+      .navbar { padding: 0 16px; height: 64px; }
+      .nav-logo-text { font-size: 17px; }
+      .nav-phone { padding: 8px 14px; font-size: 13px; }
+      .trust-inner { flex-direction: column; gap: 0; border-radius: 16px; }
+      .trust-item:first-child { border-radius: 16px 16px 0 0; }
+      .trust-item:last-child { border-radius: 0 0 16px 16px; }
+      .trust-item { padding: 20px 16px; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .cta-primary, .cta-secondary { width: 100%; max-width: 300px; justify-content: center; }
+      .float-card { display: none; }
+      .smile-stat-card { gap: 16px; padding: 14px 20px; }
+      .smile-stat-num { font-size: 24px; }
+      .hospital-features { grid-template-columns: 1fr; }
+      .contact-inner { flex-direction: column; text-align: center; }
+      .contact-info { flex-direction: column; }
+      .whatsapp-float { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════ NAVBAR ════════════════ -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">E</div>
+      <div class="nav-logo-text">Eyrice <span>Diş</span></div>
+    </a>
+    <a href="tel:4441496" class="nav-phone">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      444 1 496
+    </a>
+  </nav>
+
+  <!-- ════════════════ HERO ════════════════ -->
+  <section class="hero">
+    <div class="hero-bg-gradient"></div>
+    <div class="hero-bg-circle"></div>
+
+    <div class="hero-main">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="hero-badge">Bursa'nın İlk ve Tek Özel Diş Hastanesi</div>
+          <h1 class="hero-headline">
+            Hayalindeki<br>
+            <span class="gold">Gülüşe</span> Kavuş
+          </h1>
+          <p class="hero-sub">Klinik değil, hastane güvencesi.</p>
+          <p class="hero-desc">
+            Dijital gülüş tasarımı ile yüzünüze en uygun gülüşü birlikte tasarlıyoruz.
+            17 uzman hekim ve tam donanımlı ameliyathanemizle, güvenle gülümseyin.
+          </p>
+          <div class="hero-ctas">
+            <a href="tel:4441496" class="cta-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Ücretsiz Gülüş Analizi
+            </a>
+            <a href="#smile-section" class="cta-secondary">
+              Gülüş Tasarımı →
+            </a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-main">
+            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&h=750&fit=crop&crop=faces" alt="Güzel gülüş" loading="eager">
+            <div class="visual-overlay"></div>
+          </div>
+          <div class="float-card float-card-1">
+            <div class="fc-icon">😁</div>
+            <div class="fc-title">Gülüş Tasarımı</div>
+            <div class="fc-sub">Dijital simülasyon</div>
+          </div>
+          <div class="float-card float-card-2">
+            <div class="fc-number">17</div>
+            <div class="fc-title">Uzman Hekim</div>
+          </div>
+          <div class="float-card float-card-3">
+            <div class="fc-icon">🏥</div>
+            <div class="fc-title">Tam Donanım</div>
+            <div class="fc-sub">Ameliyathane & Anestezi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+      <div class="trust-inner">
+        <div class="trust-item">
+          <div class="trust-number" data-count="17">0</div>
+          <div class="trust-label">Uzman Hekim</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-number" data-count="21">0</div>
+          <div class="trust-label">Bin+ Takipçi</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-number" data-count="9">0</div>
+          <div class="trust-label">Uzmanlık Alanı</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-number" data-count="1">0</div>
+          <div class="trust-label">Bursa'da İlk</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ ROLLING MARQUEE ════════════════ -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-item"><span class="dot"></span> Hollywood Smile</div>
+      <div class="marquee-item"><span class="dot"></span> Gülüş Tasarımı</div>
+      <div class="marquee-item"><span class="dot"></span> Zirkonyum</div>
+      <div class="marquee-item"><span class="dot"></span> Diş Beyazlatma</div>
+      <div class="marquee-item"><span class="dot"></span> İmplant</div>
+      <div class="marquee-item"><span class="dot"></span> Ortodonti</div>
+      <div class="marquee-item"><span class="dot"></span> Çene Cerrahisi</div>
+      <div class="marquee-item"><span class="dot"></span> Pedodonti</div>
+      <div class="marquee-item"><span class="dot"></span> Kanal Tedavisi</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="marquee-item"><span class="dot"></span> Hollywood Smile</div>
+      <div class="marquee-item"><span class="dot"></span> Gülüş Tasarımı</div>
+      <div class="marquee-item"><span class="dot"></span> Zirkonyum</div>
+      <div class="marquee-item"><span class="dot"></span> Diş Beyazlatma</div>
+      <div class="marquee-item"><span class="dot"></span> İmplant</div>
+      <div class="marquee-item"><span class="dot"></span> Ortodonti</div>
+      <div class="marquee-item"><span class="dot"></span> Çene Cerrahisi</div>
+      <div class="marquee-item"><span class="dot"></span> Pedodonti</div>
+      <div class="marquee-item"><span class="dot"></span> Kanal Tedavisi</div>
+    </div>
+  </div>
+
+  <!-- ════════════════ SMILE DESIGN SECTION ════════════════ -->
+  <section class="scroll-section smile-section" id="smile-section">
+    <div class="smile-grid">
+      <div class="smile-text" data-scroll>
+        <div class="section-tag">✦ Gülüş Tasarımı</div>
+        <h2>Yüzünüze Özel<br>Dijital Tasarım</h2>
+        <p>
+          Tedaviye başlamadan önce dijital gülüş simülasyonu ile sonucu görün.
+          Hollywood Smile, zirkonyum ve beyazlatma seçenekleriyle
+          hayalinizdeki gülüşü gerçeğe dönüştürüyoruz.
+        </p>
+        <div class="smile-features">
+          <div class="smile-feature">
+            <div class="sf-icon">✨</div>
+            <div>
+              <div class="sf-text">Hollywood Smile</div>
+              <div class="sf-desc">Kusursuz, doğal beyaz gülüş</div>
+            </div>
+          </div>
+          <div class="smile-feature">
+            <div class="sf-icon">💎</div>
+            <div>
+              <div class="sf-text">Zirkonyum Kaplama</div>
+              <div class="sf-desc">Doğal görünüm, üstün dayanıklılık</div>
+            </div>
+          </div>
+          <div class="smile-feature">
+            <div class="sf-icon">🦷</div>
+            <div>
+              <div class="sf-text">Diş Beyazlatma</div>
+              <div class="sf-desc">Profesyonel beyazlatma teknolojisi</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="smile-visual" data-scroll>
+        <div class="smile-card-stack">
+          <div class="smile-card">
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500&h=660&fit=crop" alt="Gülüş tasarımı">
+          </div>
+          <div class="smile-card-bg"></div>
+          <div class="smile-stat-card">
+            <div class="smile-stat">
+              <div class="smile-stat-num">%98</div>
+              <div class="smile-stat-lbl">Memnuniyet</div>
+            </div>
+            <div class="smile-stat">
+              <div class="smile-stat-num">3D</div>
+              <div class="smile-stat-lbl">Tarayıcı</div>
+            </div>
+            <div class="smile-stat">
+              <div class="smile-stat-num">∞</div>
+              <div class="smile-stat-lbl">Özgüven</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ HOSPITAL SECTION ════════════════ -->
+  <section class="scroll-section hospital-section">
+    <div class="hospital-grid">
+      <div class="hospital-text" data-scroll>
+        <div class="section-tag">★ Hastane Güvencesi</div>
+        <h2>Klinik Değil,<br><span class="gold">Hastane.</span></h2>
+        <p>
+          Bursa'nın ilk ve tek özel diş hastanesi olarak, tam donanımlı ameliyathane
+          ve genel anestezi imkanıyla her türlü tedaviyi güvenle gerçekleştiriyoruz.
+        </p>
+        <div class="hospital-features">
+          <div class="hosp-feat" data-scroll data-delay="0">
+            <div class="hf-icon">🏥</div>
+            <div class="hf-title">Tam Donanımlı Ameliyathane</div>
+            <div class="hf-desc">Cerrahi müdahaleler için eksiksiz altyapı</div>
+          </div>
+          <div class="hosp-feat" data-scroll data-delay="100">
+            <div class="hf-icon">💉</div>
+            <div class="hf-title">Genel Anestezi</div>
+            <div class="hf-desc">Korku ve ağrı olmadan tedavi imkanı</div>
+          </div>
+          <div class="hosp-feat" data-scroll data-delay="200">
+            <div class="hf-icon">👨‍⚕️</div>
+            <div class="hf-title">17 Uzman Hekim</div>
+            <div class="hf-desc">Her branşta deneyimli kadro</div>
+          </div>
+          <div class="hosp-feat" data-scroll data-delay="300">
+            <div class="hf-icon">📡</div>
+            <div class="hf-title">İleri Teknoloji</div>
+            <div class="hf-desc">Dijital tarayıcı, sefalometrik röntgen</div>
+          </div>
+        </div>
+      </div>
+      <div class="hospital-visual" data-scroll>
+        <div class="hospital-img">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&h=440&fit=crop" alt="Modern diş hastanesi">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ CONTACT BAR ════════════════ -->
+  <div class="contact-bar">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="contact-item">
+          <strong>📍</strong> Esentepe Mah. FSM Bulvarı No:1 Nilüfer/BURSA
+        </div>
+        <div class="contact-item">
+          <strong>📞</strong> <a href="tel:4441496" style="color:var(--teal);text-decoration:none;font-weight:600;">444 1 496</a>
+        </div>
+        <div class="contact-item">
+          <strong>✉️</strong> info@eyricedis.com
+        </div>
+      </div>
+      <div class="contact-social">
+        <a href="https://instagram.com/eyricedis" target="_blank" title="Instagram">📸</a>
+        <a href="https://facebook.com/eyriceadsm" target="_blank" title="Facebook">👤</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════ WHATSAPP FLOAT ════════════════ -->
+  <a href="https://wa.me/904441496" class="whatsapp-float" target="_blank" title="WhatsApp Randevu">
+    <div class="whatsapp-pulse"></div>
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- ════════════════ JAVASCRIPT ════════════════ -->
+  <script>
+    // ── Navbar scroll effect ──
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      navbar.classList.toggle('scrolled', y > 50);
+      lastScroll = y;
+    }, { passive: true });
+
+    // ── Count-up animation ──
+    const countEls = document.querySelectorAll('[data-count]');
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.count);
+        const duration = 1500;
+        const start = performance.now();
+        const animate = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+          el.textContent = Math.round(target * eased);
+          if (progress < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+        countObserver.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    countEls.forEach(el => countObserver.observe(el));
+
+    // ── Scroll reveal ──
+    const scrollEls = document.querySelectorAll('[data-scroll]');
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, parseInt(delay));
+          scrollObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    scrollEls.forEach(el => scrollObserver.observe(el));
+
+    // ── Parallax on hero visual (desktop only) ──
+    if (window.innerWidth > 1024) {
+      const heroVisual = document.querySelector('.hero-visual');
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (y < window.innerHeight) {
+          heroVisual.style.transform = `translateY(${y * 0.08}px)`;
+        }
+      }, { passive: true });
+    }
+
+    // ── Smooth scroll for anchor links ──
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
