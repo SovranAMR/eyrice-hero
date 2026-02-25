@@ -1,1531 +1,1255 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eyrice Diş Hastanesi | Bursa'nın İlk ve Tek Özel Diş Hastanesi</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <style>
-        :root {
-            --gold: #d4af37;
-            --gold-light: #f4e8c1;
-            --dark: #0a0a0a;
-            --darker: #050505;
-            --white: #ffffff;
-            --gray: #888888;
-            --gray-light: #cccccc;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--dark);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        .font-playfair {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* ==================== HERO SECTION ==================== */
-        .hero {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .parallax-bg {
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
-                radial-gradient(ellipse at 40% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 30%),
-                linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #111 100%);
-            z-index: 0;
-        }
-
-        .parallax-mid {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            opacity: 0.6;
-        }
-
-        .floating-shape {
-            position: absolute;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 50%;
-        }
-
-        .floating-shape-1 {
-            width: 400px;
-            height: 400px;
-            top: 10%;
-            right: -100px;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .floating-shape-2 {
-            width: 300px;
-            height: 300px;
-            bottom: 20%;
-            left: -50px;
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
-        .floating-shape-3 {
-            width: 150px;
-            height: 150px;
-            top: 50%;
-            left: 30%;
-            border-color: rgba(212, 175, 55, 0.1);
-            animation: float 30s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(30px, -30px) rotate(90deg); }
-            50% { transform: translate(-20px, 20px) rotate(180deg); }
-            75% { transform: translate(20px, 10px) rotate(270deg); }
-        }
-
-        .particles {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: particle-float 15s ease-in-out infinite;
-        }
-
-        @keyframes particle-float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
-            50% { transform: translateY(-100vh) translateX(50px); opacity: 0.8; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 0 2rem;
-            max-width: 1200px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50px;
-            font-size: 0.875rem;
-            color: var(--gold);
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .hero-badge i {
-            color: var(--gold);
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 10vw, 8rem);
-            font-weight: 500;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--white) 0%, var(--gold-light) 50%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .hero-title span {
-            display: block;
-            font-style: italic;
-            font-weight: 400;
-            font-size: 0.6em;
-            color: var(--gold);
-            margin-top: 0.5rem;
-            -webkit-text-fill-color: var(--gold);
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            color: var(--gray-light);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.25rem 3rem;
-            background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 1.125rem;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            transform: translateY(30px);
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
-        }
-
-        .hero-cta:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4);
-        }
-
-        .hero-phone {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: var(--gray-light);
-            font-size: 1.125rem;
-            z-index: 10;
-            opacity: 0;
-        }
-
-        .hero-phone i {
-            color: var(--gold);
-            font-size: 1.25rem;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            opacity: 0;
-        }
-
-        .scroll-indicator::before {
-            content: '';
-            display: block;
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, var(--gold), transparent);
-            margin: 0 auto 0.5rem;
-            animation: scroll-line 2s ease-in-out infinite;
-        }
-
-        @keyframes scroll-line {
-            0% { transform: scaleY(0); transform-origin: top; }
-            50% { transform: scaleY(1); transform-origin: top; }
-            50.1% { transform: scaleY(1); transform-origin: bottom; }
-            100% { transform: scaleY(0); transform-origin: bottom; }
-        }
-
-        /* ==================== STATS MARQUEE ==================== */
-        .stats-section {
-            position: relative;
-            padding: 4rem 0;
-            background: var(--darker);
-            overflow: hidden;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .marquee-container {
-            display: flex;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .marquee-content {
-            display: flex;
-            animation: marquee 30s linear infinite;
-        }
-
-        .marquee-content:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            padding: 0 4rem;
-            border-right: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 600;
-            color: var(--gold);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: var(--gray-light);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .stat-icon {
-            font-size: 2rem;
-            color: var(--gold);
-            opacity: 0.5;
-        }
-
-        /* ==================== SERVICES SECTION ==================== */
-        .services-section {
-            position: relative;
-            min-height: 500vh;
-        }
-
-        .services-sticky {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .services-container {
-            display: flex;
-            width: fit-content;
-            padding: 0 10vw;
-        }
-
-        .service-card {
-            flex-shrink: 0;
-            width: 80vw;
-            max-width: 1000px;
-            height: 70vh;
-            margin-right: 10vw;
-            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            border-radius: 30px;
-            padding: 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .service-number {
-            position: absolute;
-            top: 2rem;
-            right: 3rem;
-            font-family: 'Playfair Display', serif;
-            font-size: 8rem;
-            font-weight: 700;
-            color: rgba(212, 175, 55, 0.05);
-            line-height: 1;
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 2rem;
-        }
-
-        .service-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--white) 0%, var(--gold-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .service-subtitle {
-            font-size: 1.25rem;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .service-description {
-            font-size: 1.125rem;
-            color: var(--gray-light);
-            line-height: 1.8;
-            max-width: 600px;
-        }
-
-        .service-features {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .service-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9375rem;
-            color: var(--gray-light);
-        }
-
-        .service-feature i {
-            color: var(--gold);
-        }
-
-        /* ==================== TRUST SECTION ==================== */
-        .trust-section {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 0;
-            background: 
-                radial-gradient(ellipse at 0% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-                var(--dark);
-        }
-
-        .trust-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
-        }
-
-        .trust-content {
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-
-        .trust-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--gold);
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 1.5rem;
-        }
-
-        .trust-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 500;
-            line-height: 1.2;
-            margin-bottom: 2rem;
-        }
-
-        .trust-title span {
-            color: var(--gold);
-        }
-
-        .trust-description {
-            font-size: 1.125rem;
-            color: var(--gray-light);
-            line-height: 1.8;
-            margin-bottom: 3rem;
-        }
-
-        .trust-badges {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .trust-badge {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 16px;
-            transition: all 0.4s ease;
-        }
-
-        .trust-badge:hover {
-            background: rgba(212, 175, 55, 0.05);
-            border-color: rgba(212, 175, 55, 0.3);
-            transform: translateX(10px);
-        }
-
-        .trust-badge-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--gold);
-            flex-shrink: 0;
-        }
-
-        .trust-badge-content h4 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .trust-badge-content p {
-            font-size: 0.9375rem;
-            color: var(--gray);
-        }
-
-        .trust-visual {
-            position: relative;
-            opacity: 0;
-            transform: translateX(50px);
-        }
-
-        .trust-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 30px;
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .trust-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        }
-
-        .trust-stat-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .trust-stat-row:last-child {
-            border-bottom: none;
-        }
-
-        .trust-stat-label {
-            color: var(--gray);
-            font-size: 0.9375rem;
-        }
-
-        .trust-stat-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--gold);
-            font-weight: 600;
-        }
-
-        /* ==================== CTA SECTION ==================== */
-        .cta-section {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: 
-                radial-gradient(ellipse at 50% 100%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-                var(--darker);
-            overflow: hidden;
-        }
-
-        .cta-bg-pattern {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
-            z-index: 0;
-        }
-
-        .cta-container {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 900px;
-            padding: 0 2rem;
-        }
-
-        .cta-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--gold);
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .cta-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 500;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .cta-title span {
-            color: var(--gold);
-            font-style: italic;
-        }
-
-        .cta-description {
-            font-size: 1.25rem;
-            color: var(--gray-light);
-            margin-bottom: 3rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 4rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .cta-btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1.25rem 2.5rem;
-            background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 1.125rem;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
-        }
-
-        .cta-btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4);
-        }
-
-        .cta-btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1.25rem 2.5rem;
-            background: transparent;
-            color: var(--white);
-            font-weight: 600;
-            font-size: 1.125rem;
-            border-radius: 50px;
-            text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.4s ease;
-        }
-
-        .cta-btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--gold);
-        }
-
-        .cta-info {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            padding-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .cta-info-item {
-            text-align: center;
-        }
-
-        .cta-info-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-            color: var(--gold);
-        }
-
-        .cta-info-label {
-            font-size: 0.875rem;
-            color: var(--gray);
-            margin-bottom: 0.5rem;
-        }
-
-        .cta-info-value {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--white);
-        }
-
-        /* ==================== FOOTER ==================== */
-        .footer {
-            padding: 3rem 2rem;
-            text-align: center;
-            background: var(--darker);
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .footer-text {
-            color: var(--gray);
-            font-size: 0.875rem;
-        }
-
-        /* ==================== RESPONSIVE ==================== */
-        @media (max-width: 1024px) {
-            .trust-container {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-
-            .service-card {
-                width: 90vw;
-                padding: 3rem;
-            }
-
-            .service-title {
-                font-size: 2.5rem;
-            }
-
-            .cta-info {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-
-            .service-card {
-                padding: 2rem;
-                height: auto;
-                min-height: 60vh;
-            }
-
-            .service-title {
-                font-size: 2rem;
-            }
-
-            .service-number {
-                font-size: 5rem;
-                top: 1rem;
-                right: 1.5rem;
-            }
-
-            .trust-badge {
-                padding: 1rem;
-            }
-
-            .trust-badge-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 1.25rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-btn-primary,
-            .cta-btn-secondary {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* ==================== UTILITY ==================== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Eyrice Diş Hastanesi | Bursa'nın İlk ve Tek Özel Diş Hastanesi</title>
+  <meta name="description" content="Bursa'nın ilk ve tek özel diş hastanesi. 17 uzman hekim, ameliyathane, genel anestezi. Hollywood Smile, Zirkonyum, Gülüş Tasarımı, İmplant.">
+  
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <!-- Fonts with font-display: swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CSS Custom Properties */
+    :root {
+      --gold: #d4af37;
+      --gold-light: #f0d878;
+      --gold-dark: #b8960c;
+      --black: #0a0a0a;
+      --black-light: #151515;
+      --gray: #888;
+      --white: #fff;
+      --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --transition-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    /* Reset & Base - GPU Accelerated */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    /* Intro scroll lock */
+    body.intro-locked {
+      overflow: hidden;
+      height: 100vh;
+    }
+    
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s var(--transition-luxury), visibility 0.8s;
+    }
+    
+    .loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 2px solid rgba(212, 175, 55, 0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    
+    /* Progress Bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(212, 175, 55, 0.2);
+      z-index: 9998;
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+    
+    .scroll-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform-origin: left;
+      transition: transform 0.1s linear;
+    }
+    
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.5rem 4%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.6s var(--transition-luxury);
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    
+    .nav.visible {
+      opacity: 1;
+      transform: translateY(0);
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    
+    .nav-phone {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.4s ease;
+    }
+    
+    .nav-phone:hover {
+      color: var(--gold);
+    }
+    
+    /* Hero Section - GPU Optimized */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      contain: layout style paint;
+    }
+    
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 100%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+      z-index: 0;
+    }
+    
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+      z-index: 1;
+    }
+    
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0.3;
+      will-change: transform;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 900px;
+      padding: 2rem;
+    }
+    
+    .hero-badge {
+      display: inline-block;
+      padding: 0.6rem 1.5rem;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .hero-title-line {
+      display: block;
+    }
+    
+    .hero-title-accent {
+      color: var(--gold);
+      font-style: italic;
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      font-weight: 300;
+      line-height: 1.8;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 2.5rem;
+      background: var(--gold);
+      color: var(--black);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      border-radius: 100px;
+      transition: all 0.5s var(--transition-luxury);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .hero-cta:hover {
+      background: var(--gold-light);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+    }
+    
+    /* Stats Marquee - GPU Optimized */
+    .stats-marquee {
+      padding: 3rem 0;
+      background: linear-gradient(180deg, var(--black) 0%, var(--black-light) 100%);
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+      overflow: hidden;
+      contain: layout style;
+    }
+    
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+    }
+    
+    .marquee-content {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      padding: 0 2rem;
+    }
+    
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    
+    .marquee-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    
+    .marquee-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .marquee-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(212, 175, 55, 0.3);
+      flex-shrink: 0;
+    }
+    
+    /* Services Section - Optimized */
+    .services {
+      padding: 8rem 4%;
+      position: relative;
+      contain: layout style paint;
+    }
+    
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 5rem;
+    }
+    
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .section-desc {
+      color: var(--gray);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .service-card {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.6s var(--transition-luxury);
+      opacity: 0;
+      transform: translateY(40px);
+      will-change: transform, box-shadow;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.15) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+    
+    .service-card:hover::before {
+      opacity: 1;
+    }
+    
+    .service-card:hover {
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    }
+    
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .service-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+    
+    .service-desc {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    
+    /* Trust Section - Optimized */
+    .trust {
+      padding: 8rem 4%;
+      background: var(--black-light);
+      position: relative;
+      contain: layout style;
+    }
+    
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    
+    @media (max-width: 900px) {
+      .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+    
+    .trust-content {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    
+    .trust-visual {
+      position: relative;
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    
+    .trust-visual-bg {
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+      border-radius: 30px;
+    }
+    
+    .trust-image {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+      border-radius: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .trust-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .trust-feature {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    
+    .trust-feature-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      flex-shrink: 0;
+    }
+    
+    .trust-feature-text {
+      font-size: 1rem;
+      color: var(--gray);
+    }
+    
+    .trust-feature-text strong {
+      color: var(--white);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    
+    /* CTA Section */
+    .cta {
+      padding: 8rem 4%;
+      text-align: center;
+      position: relative;
+      contain: layout style;
+    }
+    
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.1) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+      z-index: 0;
+    }
+    
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .cta-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .cta-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--gold);
+      text-decoration: none;
+      margin: 2rem 0;
+      transition: all 0.5s var(--transition-luxury);
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    
+    .cta-phone:hover {
+      color: var(--gold-light);
+      transform: scale(1.05);
+      text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+    }
+    
+    .cta-address {
+      color: var(--gray);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .cta-social {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 100px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .cta-social:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold);
+    }
+    
+    /* WhatsApp Button - Scroll triggered */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+      transition: all 0.5s var(--transition-luxury);
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(100px) scale(0.8);
+      pointer-events: none;
+    }
+    
+    .whatsapp-btn.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+    
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+    }
+    
+    /* Footer */
+    .footer {
+      padding: 3rem 4%;
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+    
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Mobile Optimizations */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1rem 4%;
+      }
+      
+      .services {
+        padding: 5rem 4%;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .service-card {
+        padding: 2rem 1.5rem;
+      }
+      
+      .trust {
+        padding: 5rem 4%;
+      }
+      
+      .cta {
+        padding: 5rem 4%;
+      }
+      
+      .marquee-number {
+        font-size: 2rem;
+      }
+      
+      .whatsapp-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 1.5rem;
+        right: 1.5rem;
+      }
+      
+      /* Reduce particles on mobile */
+      .particle:nth-child(n+16) {
+        display: none;
+      }
+    }
+    
+    /* GPU Acceleration helpers */
+    .gpu-layer {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      perspective: 1000px;
+    }
+  </style>
 </head>
-<body>
-
-    <!-- ==================== HERO SECTION ==================== -->
-    <section class="hero" id="hero">
-        <div class="parallax-bg">
-            <div class="floating-shape floating-shape-1"></div>
-            <div class="floating-shape floating-shape-2"></div>
-            <div class="floating-shape floating-shape-3"></div>
+<body class="intro-locked">
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loader">
+    <div class="loading-spinner"></div>
+  </div>
+  
+  <!-- Scroll Progress -->
+  <div class="scroll-progress">
+    <div class="scroll-progress-bar" id="progressBar"></div>
+  </div>
+  
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">Eyrice</a>
+    <a href="tel:4441496" class="nav-phone">444 1 496</a>
+  </nav>
+  
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-particles" id="particles"></div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">Bursa'nın İlk ve Tek Özel Diş Hastanesi</div>
+      <h1 class="hero-title">
+        <span class="hero-title-line">Gülüşünüzü</span>
+        <span class="hero-title-line hero-title-accent">Sanata Dönüştürüyoruz</span>
+      </h1>
+      <p class="hero-subtitle">
+        17 uzman hekim, ameliyathane ve genel anestezi imkanı ile 
+        Hollywood Smile'dan implantolojiye kadar tüm diş sağlığı hizmetleri
+      </p>
+      <a href="tel:4441496" class="hero-cta">
+        <span>Randevu Al</span>
+        <span>→</span>
+      </a>
+    </div>
+  </section>
+  
+  <!-- Stats Marquee -->
+  <section class="stats-marquee">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="marquee-content">
+        <div class="marquee-item">
+          <span class="marquee-number">17</span>
+          <span class="marquee-label">Uzman Hekim</span>
         </div>
+        <div class="marquee-divider"></div>
+        <div class="marquee-item">
+          <span class="marquee-number">21K</span>
+          <span class="marquee-label">Takipçi</span>
+        </div>
+        <div class="marquee-divider"></div>
+        <div class="marquee-item">
+          <span class="marquee-number">1.</span>
+          <span class="marquee-label">Özel Diş Hastanesi</span>
+        </div>
+        <div class="marquee-divider"></div>
+        <div class="marquee-item">
+          <span class="marquee-number">7/24</span>
+          <span class="marquee-label">Acil Hizmet</span>
+        </div>
+        <div class="marquee-divider"></div>
+        <div class="marquee-item">
+          <span class="marquee-number">★★★★★</span>
+          <span class="marquee-label">Hasta Memnuniyeti</span>
+        </div>
+        <div class="marquee-divider"></div>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <div class="marquee-item">
+          <span class="marquee-number">17</span>
+          <span class="marquee-label">Uzman Hekim</span>
+        </div>
+        <div class="marquee-divider"></div>
+        <div class="marquee-item">
+          <span class="marquee-number">21K</span>
+          <span class="marquee-label">Takipçi</span>
+        </div>
+        <div class="marquee-divider"></div>
+        <div class="marquee-item">
+          <span class="marquee-number">1.</span>
+          <span class="marquee-label">Özel Diş Hastanesi</span>
+        </div>
+        <div class="marquee-divider"></div>
+        <div class="marquee-item">
+          <span class="marquee-number">7/24</span>
+          <span class="marquee-label">Acil Hizmet</span>
+        </div>
+        <div class="marquee-divider"></div>
+        <div class="marquee-item">
+          <span class="marquee-number">★★★★★</span>
+          <span class="marquee-label">Hasta Memnuniyeti</span>
+        </div>
+        <div class="marquee-divider"></div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <span class="section-label">Hizmetlerimiz</span>
+      <h2 class="section-title">Özel Diş Hastanesi Ayrıcalığı</h2>
+      <p class="section-desc">
+        Ameliyathane ve genel anestezi imkanı ile en karmaşık tedavileri 
+        bile güvenle ve konforla gerçekleştiriyoruz.
+      </p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card" data-mouse-parallax>
+        <div class="service-icon">✨</div>
+        <h3 class="service-title">Hollywood Smile</h3>
+        <p class="service-desc">
+          Yüz hatlarınıza özel tasarlanmış, doğal ve etkileyici gülüşler. 
+          İpek gibi pürüzsüz, bembeyaz dişler.
+        </p>
+      </div>
+      
+      <div class="service-card" data-mouse-parallax>
+        <div class="service-icon">💎</div>
+        <h3 class="service-title">Zirkonyum Diş</h3>
+        <p class="service-desc">
+          Metal desteksiz, ışığı geçiren doğal yapısı ile gerçek diş 
+          estetiği. Güçlü, hafif ve biyouyumlu.
+        </p>
+      </div>
+      
+      <div class="service-card" data-mouse-parallax>
+        <div class="service-icon">🎨</div>
+        <h3 class="service-title">Gülüş Tasarımı</h3>
+        <p class="service-desc">
+          Dijital gülüş analizi ve simülasyonu ile tedavi öncesi 
+          yeni gülüşünüzü görün, onaylayın, öyle başlayalım.
+        </p>
+      </div>
+      
+      <div class="service-card" data-mouse-parallax>
+        <div class="service-icon">🦷</div>
+        <h3 class="service-title">İmplantoloji</h3>
+        <p class="service-desc">
+          Kayıp dişlerinizin en doğal ve kalıcı çözümü. 
+      Dünya markası implant sistemleri uzman cerrahlarımızda.
+        </p>
+      </div>
+      
+      <div class="service-card" data-mouse-parallax>
+        <div class="service-icon">😁</div>
+        <h3 class="service-title">Ortodonti</h3>
+        <p class="service-desc">
+          Görünmez şeffaf plaklar veya estetik braketlerle 
+          çarpık dişlere veda edin, sağlıklı gülüşe merhaba.
+        </p>
+      </div>
+      
+      <div class="service-card" data-mouse-parallax>
+        <div class="service-icon">🏥</div>
+        <h3 class="service-title">Genel Anestezi</h3>
+        <p class="service-desc">
+          Diş hekimi korkusuna son! Ameliyathane ortamında, 
+          anestezi uzmanı eşliğinde uykuda tedavi imkanı.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Trust Section -->
+  <section class="trust" id="trust">
+    <div class="trust-grid">
+      <div class="trust-content">
+        <span class="section-label">Neden Eyrice?</span>
+        <h2 class="section-title">Hastane Güvencesi,<br>5 Yıldız Konforu</h2>
+        <p class="section-desc">
+          Klinik değil, tam donanımlı hastane. Her an hazır ameliyathane, 
+          yoğun bakım ünitesi ve 17 uzman hekim kadromuzla Bursa'nın en 
+          kapsamlı diş sağlığı merkeziyiz.
+        </p>
         
-        <div class="particles" id="particles"></div>
-
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-crown"></i>
-                <span>Bursa'nın İlk ve Tek Özel Diş Hastanesi</span>
+        <div class="trust-features">
+          <div class="trust-feature">
+            <div class="trust-feature-icon">🏥</div>
+            <div class="trust-feature-text">
+              <strong>Tam Donanımlı Ameliyathane</strong>
+              Acil müdahale ve cerrahi operasyonlar için 7/24 hazır
             </div>
-            
-            <h1 class="hero-title font-playfair">
-                Eyrice
-                <span>Diş Hastanesi</span>
-            </h1>
-            
-            <p class="hero-subtitle">
-                Hollywood Smile'dan implantlara, zirkonyumdan gülüş tasarımına. 
-                17 uzman hekim, ameliyathane ve genel anestezi imkanıyla 
-                Bursa'nın premium diş sağlığı adresi.
-            </p>
-            
-            <a href="#cta" class="hero-cta">
-                <i class="fas fa-calendar-check"></i>
-                Randevu Al
-            </a>
+          </div>
+          <div class="trust-feature">
+            <div class="trust-feature-icon">💉</div>
+            <div class="trust-feature-text">
+              <strong>Anestezi Uzmanı Ekibi</strong>
+              Sedasyon ve genel anestezi ile ağrısız, korkusuz tedavi
+            </div>
+          </div>
+          <div class="trust-feature">
+            <div class="trust-feature-icon">👨‍⚕️</div>
+            <div class="trust-feature-text">
+              <strong>17 Uzman Hekim</strong>
+              Her branşta alanında uzman, deneyimli doktor kadrosu
+            </div>
+          </div>
         </div>
-
-        <div class="hero-phone">
-            <i class="fas fa-phone"></i>
-            <span>444 1 496</span>
+      </div>
+      
+      <div class="trust-visual">
+        <div class="trust-visual-bg"></div>
+        <div class="trust-image">
+          🏥
         </div>
-
-        <div class="scroll-indicator"></div>
-    </section>
-
-    <!-- ==================== STATS MARQUEE ==================== -->
-    <section class="stats-section">
-        <div class="marquee-container">
-            <div class="marquee-content">
-                <div class="stat-item">
-                    <i class="fas fa-user-md stat-icon"></i>
-                    <div>
-                        <div class="stat-number">17</div>
-                        <div class="stat-label">Uzman Hekim</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fab fa-instagram stat-icon"></i>
-                    <div>
-                        <div class="stat-number">21K</div>
-                        <div class="stat-label">Takipçi</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-hospital stat-icon"></i>
-                    <div>
-                        <div class="stat-number">1.</div>
-                        <div class="stat-label">Özel Diş Hastanesi</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-procedures stat-icon"></i>
-                    <div>
-                        <div class="stat-number">Ameliyathane</div>
-                        <div class="stat-label">+ Genel Anestezi</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-smile stat-icon"></i>
-                    <div>
-                        <div class="stat-number">1000+</div>
-                        <div class="stat-label">Gülüş Tasarımı</div>
-                    </div>
-                </div>
-                <!-- Duplicate for infinite scroll -->
-                <div class="stat-item">
-                    <i class="fas fa-user-md stat-icon"></i>
-                    <div>
-                        <div class="stat-number">17</div>
-                        <div class="stat-label">Uzman Hekim</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fab fa-instagram stat-icon"></i>
-                    <div>
-                        <div class="stat-number">21K</div>
-                        <div class="stat-label">Takipçi</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-hospital stat-icon"></i>
-                    <div>
-                        <div class="stat-number">1.</div>
-                        <div class="stat-label">Özel Diş Hastanesi</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-procedures stat-icon"></i>
-                    <div>
-                        <div class="stat-number">Ameliyathane</div>
-                        <div class="stat-label">+ Genel Anestezi</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-smile stat-icon"></i>
-                    <div>
-                        <div class="stat-number">1000+</div>
-                        <div class="stat-label">Gülüş Tasarımı</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== SERVICES SECTION ==================== -->
-    <section class="services-section" id="services">
-        <div class="services-sticky">
-            <div class="services-container" id="servicesContainer">
-                
-                <!-- Service 1: Hollywood Smile -->
-                <div class="service-card">
-                    <div class="service-number">01</div>
-                    <div class="service-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3 class="service-title">Hollywood Smile</h3>
-                    <p class="service-subtitle">Ekranlardaki Mükemmellik, Gerçek Hayatta</p>
-                    <p class="service-description">
-                        Porselen lamina ve zirkonyum kaplamalarla karakterinize uygun, 
-                        doğal görünümlü bir gülüş. Estetik analiz, dijital gülüş tasarımı 
-                        ve prova aşamalarıyla hayalinizdeki gülüşe kavuşun.
-                    </p>
-                    <div class="service-features">
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Dijital Gülüş Tasarımı</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Ömür Boyu Garanti</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Anestezi Altında İşlem</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 2: Gülüş Tasarımı -->
-                <div class="service-card">
-                    <div class="service-number">02</div>
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3 class="service-title">Gülüş Tasarımı</h3>
-                    <p class="service-subtitle">Yüzünüze Özel Estetik</p>
-                    <p class="service-description">
-                        Yüz hatlarınız, cilt tonunuz ve kişisel tarzınıza göre özel olarak 
-                        tasarlanan gülüş estetiği. CAD/CAM teknolojisi ile milimetrik 
-                        hassasiyette, sanatsal dokunuşlar.
-                    </p>
-                    <div class="service-features">
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Yüz Analizi</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>3D Simülasyon</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Mock-up Prova</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 3: Zirkonyum -->
-                <div class="service-card">
-                    <div class="service-number">03</div>
-                    <div class="service-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <h3 class="service-title">Zirkonyum</h3>
-                    <p class="service-subtitle">Doğallığın Gücü</p>
-                    <p class="service-description">
-                        Metal desteksiz, ışığı geçiren, tamamen doğal görünümlü zirkonyum 
-                        kaplamalar. Diş eti uyumu mükemmel, alerji riski sıfır. 
-                        Estetik ve dayanıklılığın buluşması.
-                    </p>
-                    <div class="service-features">
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Işık Geçirgenliği</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Metal İçermez</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Biyouyumlu</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 4: İmplant -->
-                <div class="service-card">
-                    <div class="service-number">04</div>
-                    <div class="service-icon">
-                        <i class="fas fa-tooth"></i>
-                    </div>
-                    <h3 class="service-title">İmplant</h3>
-                    <p class="service-subtitle">Kalıcı Çözüm, Doğal Hiss</p>
-                    <p class="service-description">
-                        Eksik dişleriniz için titanyum vidalı, ömür boyu kullanılabilir 
-                        implant çözümleri. Tek dişten tam ağıza,导引li cerrahi ile 
-                        maksimum hassasiyet ve konfor.
-                    </p>
-                    <div class="service-features">
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Guided Surgery</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>İmmediat Yükleme</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Yaşam Boyu Garanti</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 5: Ortodonti -->
-                <div class="service-card">
-                    <div class="service-number">05</div>
-                    <div class="service-icon">
-                        <i class="fas fa-align-center"></i>
-                    </div>
-                    <h3 class="service-title">Ortodonti</h3>
-                    <p class="service-subtitle">Görünmez Düzeltme</p>
-                    <p class="service-description">
-                        Şeffaf plaklar (Invisalign), lingual braces ve estetik braketlerle 
-                        çarpık dişleri düzeltme. Hiçbir şey takmamış gibi özgürce gülümseyin 
-                        while tedavi devam eder.
-                    </p>
-                    <div class="service-features">
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Şeffaf Plaklar</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Görünmez Braket</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Hızlı Sonuç</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== TRUST SECTION ==================== -->
-    <section class="trust-section" id="trust">
-        <div class="trust-container">
-            <div class="trust-content">
-                <div class="trust-label">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Hastane Güvencesi</span>
-                </div>
-                
-                <h2 class="trust-title font-playfair">
-                    Sağlık Bakanlığı 
-                    <span>Ruhsatlı</span> 
-                    Özel Diş Hastanesi
-                </h2>
-                
-                <p class="trust-description">
-                    Klinik değil, tam teşekküllü hastane. Ameliyathane, yoğun bakım 
-                    ünitesi ve genel anestezi imkanıyla kompleks vakalarda bile güvenli 
-                    tedavi. 17 uzman hekim, her biri alanında akademik kariyer sahibi.
-                </p>
-
-                <div class="trust-badges">
-                    <div class="trust-badge">
-                        <div class="trust-badge-icon">
-                            <i class="fas fa-procedures"></i>
-                        </div>
-                        <div class="trust-badge-content">
-                            <h4>Ameliyathane</h4>
-                            <p>Cerrahi operasyonlar için tam donanımlı</p>
-                        </div>
-                    </div>
-                    
-                    <div class="trust-badge">
-                        <div class="trust-badge-icon">
-                            <i class="fas fa-bed"></i>
-                        </div>
-                        <div class="trust-badge-content">
-                            <h4>Genel Anestezi</h4>
-                            <p>Anestezi uzmanı eşliğinde tam bilinçsiz tedavi</p>
-                        </div>
-                    </div>
-                    
-                    <div class="trust-badge">
-                        <div class="trust-badge-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <div class="trust-badge-content">
-                            <h4>Akademik Kadro</h4>
-                            <p>Her branşta uzman ve profesör hekimler</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="trust-visual">
-                <div class="trust-card">
-                    <div class="trust-stat-row">
-                        <span class="trust-stat-label">Kuruluş</span>
-                        <span class="trust-stat-value">2015</span>
-                    </div>
-                    <div class="trust-stat-row">
-                        <span class="trust-stat-label">Hekim Sayısı</span>
-                        <span class="trust-stat-value">17</span>
-                    </div>
-                    <div class="trust-stat-row">
-                        <span class="trust-stat-label">Tedavi Ünitesi</span>
-                        <span class="trust-stat-value">12</span>
-                    </div>
-                    <div class="trust-stat-row">
-                        <span class="trust-stat-label">Ameliyathane</span>
-                        <span class="trust-stat-value">2</span>
-                    </div>
-                    <div class="trust-stat-row">
-                        <span class="trust-stat-label">Mutlu Hasta</span>
-                        <span class="trust-stat-value">50K+</span>
-                    </div>
-                    <div class="trust-stat-row">
-                        <span class="trust-stat-label">Instagram</span>
-                        <span class="trust-stat-value">@eyricedis</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== CTA SECTION ==================== -->
-    <section class="cta-section" id="cta">
-        <div class="cta-bg-pattern"></div>
-        
-        <div class="cta-container">
-            <div class="cta-label">
-                <i class="fas fa-phone-alt"></i>
-                <span>Hemen Randevu</span>
-            </div>
-            
-            <h2 class="cta-title font-playfair">
-                Hayalinizdeki Gülüşe 
-                <span>Bir Telefon</span> 
-                Kadar Yakınsınız
-            </h2>
-            
-            <p class="cta-description">
-                Ücretsiz muayene ve dijital gülüş tasarımı için hemen arayın. 
-                17 uzman hekimimiz size özel tedavi planını hazırlasın.
-            </p>
-
-            <div class="cta-buttons">
-                <a href="tel:4441496" class="cta-btn-primary">
-                    <i class="fas fa-phone"></i>
-                    444 1 496
-                </a>
-                <a href="https://instagram.com/eyricedis" target="_blank" class="cta-btn-secondary">
-                    <i class="fab fa-instagram"></i>
-                    @eyricedis
-                </a>
-            </div>
-
-            <div class="cta-info">
-                <div class="cta-info-item">
-                    <div class="cta-info-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="cta-info-label">Adres</div>
-                    <div class="cta-info-value">FSM Bulvarı No:1<br>Nilüfer/BURSA</div>
-                </div>
-                
-                <div class="cta-info-item">
-                    <div class="cta-info-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="cta-info-label">Çalışma Saatleri</div>
-                    <div class="cta-info-value">Pzt-Cum: 09:00-19:00<br>Cmt: 10:00-16:00</div>
-                </div>
-                
-                <div class="cta-info-item">
-                    <div class="cta-info-icon">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="cta-info-label">Otopark</div>
-                    <div class="cta-info-value">Ücretsiz<br>Vale Hizmeti</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="footer">
-        <div class="footer-logo font-playfair">Eyrice Diş Hastanesi</div>
-        <p class="footer-text">Bursa'nın İlk ve Tek Özel Diş Hastanesi © 2024</p>
-    </footer>
-
-    <script>
-        // ==================== PARTICLE SYSTEM ====================
-        function createParticles() {
-            const container = document.getElementById('particles');
-            const particleCount = 25;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-                container.appendChild(particle);
-            }
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="cta" id="cta">
+    <div class="cta-bg"></div>
+    <div class="cta-content">
+      <span class="section-label">İletişim</span>
+      <h2 class="cta-title">Yeni Gülüşünüz İçin<br>Bir Telefon Kadar Yakınız</h2>
+      
+      <a href="tel:4441496" class="cta-phone">
+        <span>📞</span>
+        <span>444 1 496</span>
+      </a>
+      
+      <p class="cta-address">
+        📍 FSM Bulvarı No:1 Nilüfer / BURSA
+      </p>
+      
+      <a href="https://instagram.com/eyricedis" target="_blank" class="cta-social">
+        <span>📷</span>
+        <span>@eyricedis</span>
+        <span style="color: var(--gold);">•</span>
+        <span>21K Takipçi</span>
+      </a>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">Eyrice Diş Hastanesi</div>
+    <p>© 2024 Tüm hakları saklıdır. | Bursa'nın İlk ve Tek Özel Diş Hastanesi</p>
+  </footer>
+  
+  <!-- WhatsApp Button - Scroll triggered -->
+  <a href="https://wa.me/905XXXXXXXXX" class="whatsapp-btn" id="whatsappBtn" target="_blank" aria-label="WhatsApp">
+    💬
+  </a>
+  
+  <!-- GSAP Lazy Load -->
+  <script>
+    // Configuration
+    const CONFIG = {
+      animationDuration: 1.4,
+      animationEase: 'power2.out',
+      staggerDelay: 0.12,
+      scrollSmoothness: 1,
+      isTouch: window.matchMedia('(pointer: coarse)').matches,
+      isReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    };
+    
+    // Debounce utility
+    function debounce(fn, wait) {
+      let t;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn.apply(this, args), wait);
+      };
+    }
+    
+    // Throttle utility
+    function throttle(fn, limit) {
+      let inThrottle;
+      return function(...args) {
+        if (!inThrottle) {
+          fn.apply(this, args);
+          inThrottle = true;
+          setTimeout(() => inThrottle = false, limit);
         }
-        createParticles();
-
-        // ==================== GSAP ANIMATIONS ====================
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Hero entrance animations
-        const heroTl = gsap.timeline({ delay: 0.3 });
+      };
+    }
+    
+    // Particle system - GPU optimized
+    function createParticles() {
+      const container = document.getElementById('particles');
+      if (!container || CONFIG.isTouch) return; // Disable on mobile
+      
+      const count = CONFIG.isTouch ? 10 : 25;
+      const fragment = document.createDocumentFragment();
+      
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle gpu-layer';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.animationDelay = Math.random() * 5 + 's';
+        p.style.opacity = 0.2 + Math.random() * 0.3;
+        p.style.transform = `scale(${0.5 + Math.random()})`;
+        fragment.appendChild(p);
+      }
+      
+      container.appendChild(fragment);
+    }
+    
+    // Initialize when DOM ready
+    document.addEventListener('DOMContentLoaded', async () => {
+      const loader = document.getElementById('loader');
+      const body = document.body;
+      
+      // Create particles
+      createParticles();
+      
+      // Hide loader after minimum display time
+      await new Promise(r => setTimeout(r, 800));
+      loader.classList.add('hidden');
+      
+      // Dynamic GSAP import
+      if (!CONFIG.isReducedMotion) {
+        try {
+          await loadGSAP();
+          initAnimations();
+        } catch (e) {
+          console.warn('GSAP load failed, using CSS fallback');
+          showContentImmediately();
+        }
+      } else {
+        showContentImmediately();
+      }
+    });
+    
+    // Load GSAP dynamically
+    function loadGSAP() {
+      return new Promise((resolve, reject) => {
+        if (window.gsap) {
+          resolve();
+          return;
+        }
         
-        heroTl.to('.hero-badge', {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power3.out'
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
+        script.onload = () => {
+          const st = document.createElement('script');
+          st.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js';
+          st.onload = resolve;
+          st.onerror = reject;
+          document.head.appendChild(st);
+        };
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+    
+    // Show content without animations
+    function showContentImmediately() {
+      document.body.classList.remove('intro-locked');
+      document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .hero-cta, .nav').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      document.getElementById('nav').classList.add('visible');
+    }
+    
+    // Initialize animations
+    function initAnimations() {
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Unlock scroll after intro animations
+      const unlockScroll = () => {
+        document.body.classList.remove('intro-locked');
+      };
+      
+      // Hero entrance - slower, smoother
+      const heroTl = gsap.timeline({
+        onComplete: unlockScroll,
+        defaults: { ease: CONFIG.animationEase }
+      });
+      
+      heroTl
+        .to('.hero-badge', {
+          y: 0,
+          opacity: 1,
+          duration: CONFIG.animationDuration,
+          delay: 0.3
         })
         .to('.hero-title', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: 'power3.out'
-        }, '-=0.4')
+          y: 0,
+          opacity: 1,
+          duration: CONFIG.animationDuration
+        }, '-=1')
         .to('.hero-subtitle', {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        }, '-=0.6')
+          y: 0,
+          opacity: 1,
+          duration: CONFIG.animationDuration
+        }, '-=1')
         .to('.hero-cta', {
-            opacity: 1,
+          y: 0,
+          opacity: 1,
+          duration: CONFIG.animationDuration
+        }, '-=1')
+        .to('#nav', {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          onStart: () => document.getElementById('nav').classList.add('visible')
+        }, '-=0.8');
+      
+      // Progress bar - throttle for performance
+      const updateProgress = throttle(() => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollTop / docHeight;
+        document.getElementById('progressBar').style.transform = `scaleX(${progress})`;
+      }, 50);
+      
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      
+      // WhatsApp button - appears after 15% scroll
+      ScrollTrigger.create({
+        trigger: 'body',
+        start: '15% top',
+        onEnter: () => document.getElementById('whatsappBtn').classList.add('visible'),
+        onLeaveBack: () => document.getElementById('whatsappBtn').classList.remove('visible')
+      });
+      
+      // Section reveals - smooth, slower
+      const revealElements = [
+        { trigger: '.section-label', start: 'top 85%' },
+        { trigger: '.section-title', start: 'top 85%' },
+        { trigger: '.section-desc', start: 'top 85%' },
+        { trigger: '.service-card', start: 'top 85%', stagger: true },
+        { trigger: '.trust-content', start: 'top 75%' },
+        { trigger: '.trust-visual', start: 'top 75%' },
+        { trigger: '.trust-feature', start: 'top 85%', stagger: true },
+        { trigger: '.cta-title', start: 'top 80%' },
+        { trigger: '.cta-phone', start: 'top 80%' },
+        { trigger: '.cta-address', start: 'top 80%' },
+        { trigger: '.cta-social', start: 'top 80%' }
+      ];
+      
+      revealElements.forEach(item => {
+        const elements = item.stagger 
+          ? document.querySelectorAll(item.trigger)
+          : [document.querySelector(item.trigger)];
+        
+        if (elements.length === 0 || !elements[0]) return;
+        
+        gsap.fromTo(elements, 
+          { y: 30, opacity: 0 },
+          {
             y: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        }, '-=0.4')
-        .to('.hero-phone', {
             opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out'
-        }, '-=0.4')
-        .to('.scroll-indicator', {
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out'
-        }, '-=0.4');
-
-        // Hero parallax on scroll
-        gsap.to('.hero-title', {
+            duration: CONFIG.animationDuration,
+            ease: CONFIG.animationEase,
+            stagger: item.stagger ? CONFIG.staggerDelay : 0,
             scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true
-            },
-            y: -100,
-            opacity: 0.3
-        });
-
-        gsap.to('.hero-badge, .hero-subtitle, .hero-cta', {
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: '50% top',
-                scrub: true
-            },
-            y: -50,
-            opacity: 0
-        });
-
-        gsap.to('.parallax-bg', {
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true
-            },
-            y: 200
-        });
-
-        // Floating shapes parallax
-        gsap.to('.floating-shape-1', {
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true
-            },
-            y: -150,
-            rotation: 180
-        });
-
-        gsap.to('.floating-shape-2', {
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true
-            },
-            y: 100,
-            rotation: -120
-        });
-
-        // ==================== SERVICES HORIZONTAL SCROLL ====================
-        const servicesContainer = document.getElementById('servicesContainer');
-        const servicesSection = document.querySelector('.services-section');
-        
-        if (servicesContainer && servicesSection) {
-            const cards = servicesContainer.querySelectorAll('.service-card');
-            const totalWidth = (cards.length - 1) * (window.innerWidth * 0.9);
-
-            gsap.to(servicesContainer, {
-                x: () => -(servicesContainer.scrollWidth - window.innerWidth + 100),
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: servicesSection,
-                    start: 'top top',
-                    end: () => '+=' + (servicesContainer.scrollWidth - window.innerWidth + 200),
-                    scrub: 1,
-                    pin: true,
-                    anticipatePin: 1
-                }
-            });
-
-            // Individual card animations
-            cards.forEach((card, index) => {
-                gsap.from(card, {
-                    scrollTrigger: {
-                        trigger: servicesSection,
-                        start: () => 'top+=' + (index * window.innerWidth * 0.5) + ' top',
-                        end: () => 'top+=' + ((index + 1) * window.innerWidth * 0.5) + ' top',
-                        scrub: true
-                    },
-                    scale: 0.9,
-                    opacity: 0.5
-                });
-            });
-        }
-
-        // ==================== TRUST SECTION ANIMATIONS ====================
-        gsap.to('.trust-content', {
-            scrollTrigger: {
-                trigger: '.trust-section',
-                start: 'top 70%',
-                end: 'top 30%',
-                scrub: 1
-            },
-            opacity: 1,
-            x: 0,
-            duration: 1
-        });
-
-        gsap.to('.trust-visual', {
-            scrollTrigger: {
-                trigger: '.trust-section',
-                start: 'top 70%',
-                end: 'top 30%',
-                scrub: 1
-            },
-            opacity: 1,
-            x: 0,
-            duration: 1
-        });
-
-        // Trust badges stagger
-        gsap.from('.trust-badge', {
-            scrollTrigger: {
-                trigger: '.trust-badges',
-                start: 'top 80%'
-            },
-            y: 50,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out'
-        });
-
-        // ==================== CTA SECTION ANIMATIONS ====================
-        const ctaElements = ['.cta-label', '.cta-title', '.cta-description', '.cta-buttons', '.cta-info'];
-        
-        ctaElements.forEach((elem, index) => {
-            gsap.to(elem, {
-                scrollTrigger: {
-                    trigger: '.cta-section',
-                    start: 'top 60%'
-                },
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                delay: index * 0.1,
-                ease: 'power3.out'
-            });
-        });
-
-        // ==================== SMOOTH SCROLL ====================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // ==================== MARQUEE SPEED CONTROL ====================
-        const marquee = document.querySelector('.marquee-content');
-        let scrollSpeed = 0;
-        let lastScrollTop = 0;
-
-        window.addEventListener('scroll', () => {
-            const st = window.pageYOffset;
-            scrollSpeed = Math.abs(st - lastScrollTop);
-            lastScrollTop = st;
-
-            if (marquee) {
-                const currentSpeed = 30 - Math.min(scrollSpeed * 0.5, 20);
-                marquee.style.animationDuration = currentSpeed + 's';
+              trigger: item.trigger,
+              start: item.start,
+              toggleActions: 'play none none none',
+              once: true
             }
-        }, { passive: true });
-
-        // ==================== MOUSE PARALLAX ====================
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX / window.innerWidth - 0.5;
-            const mouseY = e.clientY / window.innerHeight - 0.5;
-
-            gsap.to('.floating-shape-1', {
-                x: mouseX * 30,
-                y: mouseY * 30,
-                duration: 1,
-                ease: 'power2.out'
-            });
-
-            gsap.to('.floating-shape-2', {
-                x: mouseX * -20,
-                y: mouseY * -20,
-                duration: 1,
-                ease: 'power2.out'
-            });
+          }
+        );
+      });
+      
+      // Marquee scroll-linked (smooth, not aggressive)
+      const marqueeTrack = document.getElementById('marqueeTrack');
+      if (marqueeTrack && !CONFIG.isTouch) {
+        gsap.to(marqueeTrack, {
+          x: '-50%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.stats-marquee',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: CONFIG.scrollSmoothness
+          }
         });
-
-        // Refresh ScrollTrigger on resize
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                ScrollTrigger.refresh();
-            }, 250);
+      }
+      
+      // Parallax - desktop only
+      if (!CONFIG.isTouch) {
+        gsap.to('.hero-bg', {
+          yPercent: 15,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: CONFIG.scrollSmoothness
+          }
         });
-    </script>
-
+        
+        gsap.to('.hero-grid', {
+          yPercent: 8,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: CONFIG.scrollSmoothness
+          }
+        });
+      }
+      
+      // Mouse parallax on service cards - desktop only
+      if (!CONFIG.isTouch) {
+        document.querySelectorAll('[data-mouse-parallax]').forEach(card => {
+          card.addEventListener('mousemove', throttle((e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--mouse-x', x + '%');
+            card.style.setProperty('--mouse-y', y + '%');
+          }, 50));
+        });
+      }
+      
+      // Resize handler - debounced
+      window.addEventListener('resize', debounce(() => {
+        ScrollTrigger.refresh();
+      }, 200));
+    }
+  </script>
 </body>
 </html>
